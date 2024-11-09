@@ -1,112 +1,114 @@
 package aed;
 
-public class HeapRedito {                                   // Totalmente analogo a TimeHeap, solo que aqui la estructura es un Max-Heap
-                                                            // nuevamente nos manejamos con un ArregloRedimensionable para que desencolarPoIndice 
-    private ArregloRedimensionableDeTraslado heap;          // tenga un costo de O(log n)
+public class HeapRedito{                                    
+    private ArregloRedimensionable heap;                         
 
-    public HeapRedito(){
-        this.heap = new ArregloRedimensionableDeTraslado();             // Creamos el ArrayRedemensionable. Costo: O(1)
+    public HeapRedito(){                            
+        this.heap = new ArregloRedimensionable();                          
     }
 
-    public Traslado Maximo(){
-        Traslado res = null;                                            // De tener un Heap no nulo, devolvemos el traslado con mas redito
-        if (heap.longitud() != 0)                                       // Costo: O(1)
-            res = this.heap.obtener(0);
-        return res;
+    public Traslado maximo(){                                
+        return heap.obtener(0);
     }
 
-    public void ArrayToHeap(Traslado[] Traslados){                     // Algoritmo de FLoyd / Heapify. Costo: O(n)
-        for (Traslado traslado : Traslados) {
-            heap.agregarAtras(traslado);                                // Agregamos todos los traslados a nuestro Heap y asignamos indices
-            traslado.changeIndiceRedito(heap.longitud() - 1);
-        }
-        int i = (heap.longitud()) / 2 - 1;
-        while (i >= 0) {                                                // Hacemos sift down desde la mitad del Array hasta el principio
-            siftDown(i);                                                // La otra mitad del Array son hojas
+    public void ArrayToHeap(Traslado[] Traslados){             
+        for (int i = 0; i<Traslados.length; i++){
+            Traslado traslado = Traslados[i];
+            heap.agregarAtras(traslado);
+            traslado.changeIndiceRedito(i);
+        }                                                
+        int i = (heap.longitud())/2-1;
+        while (i >= 0){                                        
+            siftDown(i);                                        
             i--;
         }
     }
 
-    public void encolar(Traslado traslado){                            // Este proceso cuesta O(log n)
+    public void encolar(Traslado traslado){
         heap.agregarAtras(traslado);
-        traslado.changeIndiceRedito(this.heap.longitud() - 1);          // Basicamente agregamos el traslado, le asignamos indice y
-                                                                        // acomodamos el traslado utilizando el metodo sift up (O(log n))
-        siftUp(heap.longitud() - 1);                                    
+        traslado.changeIndiceRedito(heap.longitud()-1);
+        siftUp(heap.longitud()-1);
     }
 
-    public Traslado desencolarMax(){                                   // A diferencia de Maximo(), aqui devolvemos el maximo y lo desencolamos
-        Traslado res = null;                                            // aprovechamos desencolarPorIndice y lo aplicamos en la posicion 0
-        if (heap.longitud()!=0)                                         // Costo: idem desencolarPorIndeice (O(log n))
+    public Traslado desencolarMax(){
+        Traslado res = null;
+        if (heap.longitud()!=0)
             res = desencolarPorIndice(0);
         return res;
     }
 
-    public Traslado desencolarPorIndice(int i){                        // Aqui lo que hacemos es indexar en nuestro ArregloRedimensionable (O(1))
-        Traslado res = null;                                            // reemplazar el eliminado por el ultimo y reacomodar el reemplazo
-        if (i != -1) {                                                  // Tanto swap como quitarAtras tienen un costo de (O(1))
-            Traslado eliminado = heap.obtener(i);                       // Sift up y sift down cuestan O(log n)
-            res = eliminado;
-            swap(i, heap.longitud() - 1);
+    public Traslado desencolarPorIndice(int i){
+        Traslado res = null;
+        if (i!=-1 && i<heap.longitud()){
+            res = heap.obtener(i);
+            swap(i,heap.longitud()-1);
             heap.quitarAtras();
-            siftUp(i);                                                  
-            siftDown(i);
+            reacomodar(i);
         }
-        return res;                                                     // Por lo tanto este proceso cuesta O(log n) 
-    }
-
-    private void siftUp(int i){
-        int indicePadre = (i - 1) / 2;                                  // Buscamos el padre y hacemos un loop para ver si hay que rotar ambos traslados
-        while (indicePadre != -1  && (masRedituable(i, indicePadre) != i)) {
-            swap(i, indicePadre);
-            i = indicePadre;
-            indicePadre = ((i - 1) / 2);
-        }                                                               // En este proceso como mucho hay que hacer "altura del Heap" saltos
-    }                                                                   // Por lo tanto su costo es O(log n)
-
-    private void siftDown(int i){                                       // Buscamos a los hijos, calculamos el mas redituable y lo comparamos con el padre
-        int hijoIzq = 2 * i + 1;                                        // Reacomodamos nuestro traslado y repetimos el proceso
-        int hijoDer = 2 * i + 2;
-        int hijoMasRedituable = hermanoMasRedituable(hijoIzq, hijoDer);
-        while (hijoIzq < heap.longitud() && (masRedituable(i, hijoMasRedituable) != i)){
-            swap(i, hijoMasRedituable);
-            i = hijoMasRedituable;
-            hijoIzq = 2 * i + 1;
-            hijoDer = 2 * i + 2;
-            hijoMasRedituable = hermanoMasRedituable(hijoIzq, hijoDer); 
-        }                                                               // Nuevamente este proceso se repite "altura del Heap" veces
-    }                                                                   // Por lo tanto su costo es O(log n)
-
-    private int masRedituable(int i, int j){                                 // Funcion Auxiliar que determina el traslado mas viejo
-        int res = 0;                                                    // Simplemente compara atributos de traslado. O(1)
-        if (i < heap.longitud()){
-            Traslado T1 = heap.obtener(i);
-            res = i;
-            if (j < heap.longitud()){
-                Traslado T2 = heap.obtener(j);
-                if (T2.gananciaNeta() > T1.gananciaNeta() || (T1.gananciaNeta() == T2.gananciaNeta() && T2.id() < T1.id()))
-                    res = j;
-            }
-        }   
         return res;
     }
 
-    private int hermanoMasRedituable(int i, int j){
+    public void reacomodar(int i){                                                               
+        siftUp(i);                                       
+        siftDown(i);
+    }
+
+    public void siftUp(int i){
+        int indicePadre = (i-1) / 2;  
+        while (i > 0 && masRedituable(i, indicePadre) == i) {  
+            swap(i,indicePadre);  
+            i = indicePadre;  
+            indicePadre = (i-1)/2;  
+        }
+    }
+    
+
+    private void siftDown(int i) {
+        int hijoIzq = (2*i) + 1;                             
+        int hijoDer = (2*i) + 2;
+        int hijoMejorRedito = hermanoMasRedituable(hijoIzq, hijoDer);
+        while (hijoIzq < heap.longitud() && masRedituable(i, hijoMejorRedito) != i) {
+            swap(i, hijoMejorRedito);
+            i = hijoMejorRedito;
+            hijoIzq = (2*i) + 1;
+            hijoDer = (2*i) + 2;
+            hijoMejorRedito = hermanoMasRedituable(hijoIzq, hijoDer);
+        }
+    }
+
+    public int masRedituable(int i, int j) {
+        Traslado T1 = heap.obtener(i);
+        Traslado T2 = heap.obtener(j);
+        int res = i;
+        if (T2.gananciaNeta() > T1.gananciaNeta() || (T1.gananciaNeta() == T2.gananciaNeta() && T2.id() < T1.id()))
+            res = j;
+        return res;
+    }
+
+    private int hermanoMasRedituable(int i, int j) {          
         int res = 0;
-        if (i < heap.longitud()){
+        if (i < heap.longitud()){           
             res = i;
-            if (j < heap.longitud() && (masRedituable(i, j) == j)){
-                res = j;
-            }
+            if (j < heap.longitud() && masRedituable(i,j) == j) 
+                res = j; 
         }
         return res;
     }
 
-    private void swap(int i, int j){                                    // Aqui realizamos un cambio posiciones en el arreglo 
-        Traslado cambio = heap.obtener(i);                              // y actualizamos los indices. Costo: O(1)
-        heap.definir(i, heap.obtener(j));   
-        heap.definir(j, cambio);
+    public void swap(int i, int j) {
+        Traslado C1 = sinAliasing(heap.obtener(i));
+        Traslado C2 = sinAliasing(heap.obtener(j));
+        heap.definir(i, C2);
+        C2.changeIndiceRedito(i);
+        heap.definir(j, C1);
+        C1.changeIndiceRedito(i);
+    }
 
-        heap.obtener(i).changeIndiceRedito(i);
-        heap.obtener(j).changeIndiceRedito(j);
+    private Traslado sinAliasing(Traslado traslado) {
+        return new Traslado(traslado.id(), traslado.origen(), traslado.destino(), traslado.gananciaNeta(), traslado.timestamp());
+    }
+
+    public ArregloRedimensionable heap() {
+        return heap;
     }
 }

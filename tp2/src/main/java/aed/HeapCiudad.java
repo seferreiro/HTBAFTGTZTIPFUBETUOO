@@ -1,93 +1,87 @@
 package aed;
 
-import java.util.ArrayList;
+public class HeapCiudad {                                    
+    private Ciudad[] heap;                         
 
-public class HeapCiudad{                                    // Aqui utilizamos un Max-Heap de ciudad donde el criterio de comparacion
-    private ArrayList<Ciudad> heap;                         // es el balance de la ciudad con el fin de desencolar la que mejor balance tiene
-
-    public HeapCiudad(){                            
-        this.heap = new ArrayList<>();                          
+    public HeapCiudad(int cantidad) {                            
+        this.heap = new Ciudad[cantidad];                          
     }
 
-    public Ciudad maximo(){                                 // Este metodo cuesta O(1) ya que de tener un heap no vacio, devuelve el maximo
-        Ciudad res = null;                                    
-        if (!heap.isEmpty())                                    
-            res = heap.get(0);
-        return res;
+    public Ciudad maximo() {                                
+        return heap[0];
     }
 
-    public void ArrayToHeap(Ciudad[] Ciudades){             // Algortimo de Floyd / Heapify. Lo utilizamos para construir un Heap a partir
-        for (Ciudad ciudad : Ciudades) {                    // de un arreglo en O(n)
-            heap.add(ciudad);                                
-            ciudad.changeIndice(heap.size()-1);             // Agregamos las ciudades al heap y aplicamos sift down desde la mitad del arreglo
-        }                                                   // hasta la posicion 0
-        int i = (heap.size()) / 2 - 1;
+    public void ArrayToHeap(Ciudad[] Ciudades) {             
+        for (int i = 0; i<Ciudades.length; i++){
+            heap[i] = Ciudades[i];
+            Ciudades[i].changeIndice(i);
+        }                                                
+        int i = (heap.length)/2-1;
         while (i >= 0) {                                        
             siftDown(i);                                        
             i--;
         }
     }
 
-    public void reacomodar(int i){                          // En HeapCiudad no nos interesa desencolar ya que las ciudades van a seguir
-        if (i != -1) {                                      // existiendo. Por lo tanto cada vez que modifiquemos el balance vamos a utilizar 
-            siftUp(i);                                      // el metodo reacomodar que cuesta O(log n).
-            siftDown(i);
-        }
+    public void reacomodar(int i) {                                                               
+        siftUp(i);                                       
+        siftDown(i);
     }
 
-    private void siftUp(int i){
-        int indicePadre = (i - 1) / 2;
-        while (indicePadre != -1 && (mejorBalance(i,indicePadre) != i)) {
-            swap(i, indicePadre);                               
-            i = indicePadre;                                // Totalmente analogo a los otros dos heaps, el metodo sift up reacomoda una ciudad
-            indicePadre = ((i - 1) / 2);                    // segun su balance con respecto a su padre/antecesores. Costo(log n) 
+    public void siftUp(int i){
+        int indicePadre = (i-1)/2;  
+        while (i > 0 && mejorBalance(i, indicePadre) == i) {  
+            swap(i,indicePadre);  
+            i = indicePadre;  
+            indicePadre = (i-1)/2;  
         }
     }
+    
 
-    private void siftDown(int i){                           // Algoritmo sift down para reacomodar una ciudad segun su balance con respecto
-        int hijoIzq = 2 * i + 1;                            // a sus hijos/descendientes. Costo(log n)
-        int hijoDer = 2 * i + 2;
+    private void siftDown(int i){
+        int hijoIzq = (2*i) + 1;                             
+        int hijoDer = (2*i) + 2;
         int hijoMejorBalance = hermanoMejorBalance(hijoIzq, hijoDer);
-        while (hijoIzq < heap.size() && mejorBalance(i, hijoMejorBalance) != i) {
+        while (hijoIzq < heap.length && mejorBalance(i, hijoMejorBalance) != i) {
             swap(i, hijoMejorBalance);
             i = hijoMejorBalance;
-            hijoIzq = 2 * i + 1;
-            hijoDer = 2 * i + 2;
+            hijoIzq = (2*i) + 1;
+            hijoDer = (2*i) + 2;
             hijoMejorBalance = hermanoMejorBalance(hijoIzq, hijoDer);
         }
     }
 
-    private int mejorBalance(int i, int j){                                 // Funcion Auxiliar que determina el traslado mas viejo
-        int res = 0;                                                    // Simplemente compara atributos de traslado. O(1)
-        if (i < heap.size()){
-            Ciudad C1 = heap.get(i);
+    public int mejorBalance(int i, int j){
+        int res = j;
+        if (heap[i].balance() > heap[j].balance())
             res = i;
-            if (j < heap.size()){
-                Ciudad C2 = heap.get(j);
-                if (C2.balance() > C1.balance())
-                    res = j;
-            }
-        }   
         return res;
     }
 
     private int hermanoMejorBalance(int i, int j){          
         int res = 0;
-        if (i < heap.size()){           
+        if (i < heap.length) {           
             res = i;
-            if (j < heap.size() && mejorBalance(i,j) == j) 
-                res = j;
-            
+            if (j < heap.length && mejorBalance(i,j) == j) 
+                res = j; 
         }
         return res;
     }
 
-    private void swap(int i, int j){                        // Metodo swap para intercambiar posiciones de las ciudades en el arreglo.
-        Ciudad cambio = heap.get(i);                        // Tiene un Costo de O(1)
-        heap.set(i, heap.get(j));
-        heap.set(j, cambio);
+    public void swap(int i, int j){
+        Ciudad C1 = sinAliasing(heap[i]);
+        Ciudad C2 = sinAliasing(heap[j]);
+        heap[i] = C2;
+        C2.changeIndice(i);
+        heap[j] = C1;
+        C1.changeIndice(j);
+    }
 
-        heap.get(i).changeIndice(i);
-        heap.get(j).changeIndice(j);
+    private Ciudad sinAliasing(Ciudad ciudad){
+        return new Ciudad(ciudad.id(), ciudad.ganancia(), ciudad.perdida(), ciudad.balance());
+    }
+
+    public Ciudad[] heap() {
+        return heap;
     }
 }
