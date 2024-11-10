@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="aed.BestEffortTests" time="102.899" tests="8" errors="7" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="aed.BestEffortTests" time="0.158" tests="8" errors="0" skipped="0" failures="8">
   <properties>
-    <property name="jpda.address" value="58964"/>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
@@ -11,13 +10,12 @@
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="America/Buenos_Aires"/>
-    <property name="forkMode" value="once"/>
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="22"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\Dell\AppData\Local\Programs\Python\Oracle_JDK-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire1014030916525452893\surefirebooter-20241108181653096_3.jar C:\Users\Dell\AppData\Local\Temp\surefire1014030916525452893 2024-11-08T18-16-52_789-jvmRun1 surefire-20241108181653096_1tmp surefire_0-20241108181653096_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire1110225326923994815\surefirebooter-20241109223511230_3.jar C:\Users\Dell\AppData\Local\Temp\surefire1110225326923994815 2024-11-09T22-35-10_965-jvmRun1 surefire-20241109223511230_1tmp surefire_0-20241109223511230_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="aed.BestEffortTests"/>
     <property name="surefire.test.class.path" value="C:\Users\Dell\Escritorio\tp2\target\test-classes;C:\Users\Dell\Escritorio\tp2\target\classes;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\Dell\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Dell\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\Dell\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\Dell\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
@@ -33,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire1014030916525452893\surefirebooter-20241108181653096_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire1110225326923994815\surefirebooter-20241109223511230_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22.0.2+9-70"/>
@@ -44,7 +42,6 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="jpda.listen" value="true"/>
     <property name="maven.ext.class.path" value="C:\Users\Dell\.vscode\extensions\oracle.oracle-java-23.0.0\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\Dell\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
@@ -62,15 +59,17 @@
     <property name="java.vm.version" value="22.0.2+9-70"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
-    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=58964"/>
   </properties>
-  <testcase name="agregar_traslados" classname="aed.BestEffortTests" time="0.161">
-    <error message="Cannot invoke &quot;aed.Traslado.gananciaNeta()&quot; because &quot;T1&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.gananciaNeta()" because "T1" is null
-	at aed.HeapRedito.masRedituable(HeapRedito.java:82)
-	at aed.HeapRedito.siftUp(HeapRedito.java:59)
-	at aed.HeapRedito.desencolarPorIndice(HeapRedito.java:51)
-	at aed.BestEffort.despacharMasAntiguos(BestEffort.java:72)
-	at aed.BestEffortTests.agregar_traslados(BestEffortTests.java:137)
+  <testcase name="agregar_traslados" classname="aed.BestEffortTests" time="0.082">
+    <failure message="expected: &lt;1&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <1> but was: <2>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.agregar_traslados(BestEffortTests.java:138)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -140,15 +139,18 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
   <testcase name="despachar_mas_viejo_de_a_varios" classname="aed.BestEffortTests" time="0.002">
-    <error message="Cannot invoke &quot;aed.Traslado.gananciaNeta()&quot; because &quot;T1&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.gananciaNeta()" because "T1" is null
-	at aed.HeapRedito.masRedituable(HeapRedito.java:82)
-	at aed.HeapRedito.siftUp(HeapRedito.java:59)
-	at aed.HeapRedito.desencolarPorIndice(HeapRedito.java:51)
-	at aed.BestEffort.despacharMasAntiguos(BestEffort.java:72)
-	at aed.BestEffortTests.despachar_mas_viejo_de_a_varios(BestEffortTests.java:98)
+    <failure message="expected: &lt;2&gt; but was: &lt;4&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.despachar_mas_viejo_de_a_varios(BestEffortTests.java:99)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -218,10 +220,10 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
-  <testcase name="mayor_superavit" classname="aed.BestEffortTests" time="0.011">
-    <failure message="expected: &lt;2&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
+  <testcase name="mayor_superavit" classname="aed.BestEffortTests" time="0.002">
+    <failure message="expected: &lt;2&gt; but was: &lt;6&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <6>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
@@ -301,12 +303,14 @@
 ]]></failure>
   </testcase>
   <testcase name="promedio_por_traslado" classname="aed.BestEffortTests" time="0.002">
-    <error message="Cannot invoke &quot;aed.Traslado.gananciaNeta()&quot; because &quot;T1&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.gananciaNeta()" because "T1" is null
-	at aed.HeapRedito.masRedituable(HeapRedito.java:82)
-	at aed.HeapRedito.siftUp(HeapRedito.java:59)
-	at aed.HeapRedito.desencolarPorIndice(HeapRedito.java:51)
-	at aed.BestEffort.despacharMasAntiguos(BestEffort.java:72)
-	at aed.BestEffortTests.promedio_por_traslado(BestEffortTests.java:151)
+    <failure message="expected: &lt;1386&gt; but was: &lt;1432&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <1386> but was: <1432>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.promedio_por_traslado(BestEffortTests.java:168)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -376,14 +380,18 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
-  <testcase name="despachar_con_mas_ganancia_de_a_uno" classname="aed.BestEffortTests" time="102.63">
-    <error message="Cannot invoke &quot;aed.Traslado.timestamp()&quot; because the return value of &quot;aed.ArregloRedimensionableDeTraslado.obtener(int)&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.timestamp()" because the return value of "aed.ArregloRedimensionableDeTraslado.obtener(int)" is null
-	at aed.TimeHeap.siftUp(TimeHeap.java:58)
-	at aed.TimeHeap.desencolarPorIndice(TimeHeap.java:50)
-	at aed.BestEffort.despacharMasRedituables(BestEffort.java:61)
-	at aed.BestEffortTests.despachar_con_mas_ganancia_de_a_uno(BestEffortTests.java:48)
+  <testcase name="despachar_con_mas_ganancia_de_a_uno" classname="aed.BestEffortTests" time="0.001">
+    <failure message="expected: &lt;1&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <1> but was: <2>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.despachar_con_mas_ganancia_de_a_uno(BestEffortTests.java:50)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -453,14 +461,18 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
-  <testcase name="despachar_mixtos" classname="aed.BestEffortTests" time="0">
-    <error message="Cannot invoke &quot;aed.Traslado.timestamp()&quot; because the return value of &quot;aed.ArregloRedimensionableDeTraslado.obtener(int)&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.timestamp()" because the return value of "aed.ArregloRedimensionableDeTraslado.obtener(int)" is null
-	at aed.TimeHeap.siftUp(TimeHeap.java:58)
-	at aed.TimeHeap.desencolarPorIndice(TimeHeap.java:50)
-	at aed.BestEffort.despacharMasRedituables(BestEffort.java:61)
-	at aed.BestEffortTests.despachar_mixtos(BestEffortTests.java:112)
+  <testcase name="despachar_mixtos" classname="aed.BestEffortTests" time="0.002">
+    <failure message="expected: &lt;2&gt; but was: &lt;3&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <3>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.despachar_mixtos(BestEffortTests.java:114)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -530,15 +542,18 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
-  <testcase name="despachar_mas_viejo_de_a_uno" classname="aed.BestEffortTests" time="0.005">
-    <error message="Cannot invoke &quot;aed.Traslado.gananciaNeta()&quot; because &quot;T1&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.gananciaNeta()" because "T1" is null
-	at aed.HeapRedito.masRedituable(HeapRedito.java:82)
-	at aed.HeapRedito.siftUp(HeapRedito.java:59)
-	at aed.HeapRedito.desencolarPorIndice(HeapRedito.java:51)
-	at aed.BestEffort.despacharMasAntiguos(BestEffort.java:72)
-	at aed.BestEffortTests.despachar_mas_viejo_de_a_uno(BestEffortTests.java:89)
+  <testcase name="despachar_mas_viejo_de_a_uno" classname="aed.BestEffortTests" time="0.001">
+    <failure message="expected: &lt;1&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <1> but was: <2>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.despachar_mas_viejo_de_a_uno(BestEffortTests.java:82)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -608,14 +623,18 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
-  <testcase name="despachar_con_mas_ganancia_de_a_varios" classname="aed.BestEffortTests" time="0">
-    <error message="Cannot invoke &quot;aed.Traslado.timestamp()&quot; because the return value of &quot;aed.ArregloRedimensionableDeTraslado.obtener(int)&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "aed.Traslado.timestamp()" because the return value of "aed.ArregloRedimensionableDeTraslado.obtener(int)" is null
-	at aed.TimeHeap.siftUp(TimeHeap.java:58)
-	at aed.TimeHeap.desencolarPorIndice(TimeHeap.java:50)
-	at aed.BestEffort.despacharMasRedituables(BestEffort.java:61)
-	at aed.BestEffortTests.despachar_con_mas_ganancia_de_a_varios(BestEffortTests.java:64)
+  <testcase name="despachar_con_mas_ganancia_de_a_varios" classname="aed.BestEffortTests" time="0.002">
+    <failure message="expected: &lt;2&gt; but was: &lt;4&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at aed.BestEffortTests.assertSetEquals(BestEffortTests.java:34)
+	at aed.BestEffortTests.despachar_con_mas_ganancia_de_a_varios(BestEffortTests.java:66)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
@@ -685,6 +704,6 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
+]]></failure>
   </testcase>
 </testsuite>

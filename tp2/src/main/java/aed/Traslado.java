@@ -19,6 +19,13 @@ public class Traslado{
         this.gananciaNeta = gananciaNeta;
         this.timestamp = timestamp;
     }
+
+    private Traslado trasladoManteniendoIndices(Traslado T){
+        Traslado res = new Traslado(T.id, T.origen, T.destino, T.gananciaNeta, T.timestamp);
+        res.indiceRedito = T.indiceRedito;
+        res.indiceTime = T.indiceTime;
+        return res;
+    }
                                                  // Aqui tenemos los getters con la opcion de cambiar los indices Time y Redito
     public int id(){
         return this.id;

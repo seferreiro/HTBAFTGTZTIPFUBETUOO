@@ -1,23 +1,25 @@
 package aed;
 
+import java.util.ArrayList;
+
 public class HeapRedito{                                    
-    private ArregloRedimensionable heap;                         
+    private ArrayList<Traslado> heap;                         
 
     public HeapRedito(){                            
-        this.heap = new ArregloRedimensionable();                          
+        this.heap = new ArrayList<>();                          
     }
 
     public Traslado maximo(){                                
-        return heap.obtener(0);
+        return heap.get(0);
     }
 
     public void ArrayToHeap(Traslado[] Traslados){             
         for (int i = 0; i<Traslados.length; i++){
             Traslado traslado = Traslados[i];
-            heap.agregarAtras(traslado);
+            heap.add(traslado);
             traslado.changeIndiceRedito(i);
         }                                                
-        int i = (heap.longitud())/2-1;
+        int i = (heap.size())/2-1;
         while (i >= 0){                                        
             siftDown(i);                                        
             i--;
@@ -25,24 +27,24 @@ public class HeapRedito{
     }
 
     public void encolar(Traslado traslado){
-        heap.agregarAtras(traslado);
-        traslado.changeIndiceRedito(heap.longitud()-1);
-        siftUp(heap.longitud()-1);
+        heap.add(traslado);
+        traslado.changeIndiceRedito(heap.size()-1);
+        siftUp(heap.size()-1);
     }
 
     public Traslado desencolarMax(){
         Traslado res = null;
-        if (heap.longitud()!=0)
+        if (!heap.isEmpty())
             res = desencolarPorIndice(0);
         return res;
     }
 
     public Traslado desencolarPorIndice(int i){
         Traslado res = null;
-        if (i!=-1 && i<heap.longitud()){
-            res = heap.obtener(i);
-            swap(i,heap.longitud()-1);
-            heap.quitarAtras();
+        if (i!=-1 && i<heap.size()){
+            res = heap.get(i);
+            swap(i,heap.size()-1);
+            heap.remove(heap.size()-1);
             reacomodar(i);
         }
         return res;
@@ -55,30 +57,31 @@ public class HeapRedito{
 
     public void siftUp(int i){
         int indicePadre = (i-1) / 2;  
-        while (i > 0 && masRedituable(i, indicePadre) == i) {  
+        while (i>0 && heap.get(indicePadre)!=null && masRedituable(i, indicePadre) == i) {  
             swap(i,indicePadre);  
             i = indicePadre;  
-            indicePadre = (i-1)/2;  
+            indicePadre = (i-1)/2;
         }
     }
     
 
     private void siftDown(int i) {
-        int hijoIzq = (2*i) + 1;                             
+        int hijoIzq = (2*i) + 1;
         int hijoDer = (2*i) + 2;
-        int hijoMejorRedito = hermanoMasRedituable(hijoIzq, hijoDer);
-        while (hijoIzq < heap.longitud() && masRedituable(i, hijoMejorRedito) != i) {
-            swap(i, hijoMejorRedito);
-            i = hijoMejorRedito;
+        int hijoMasRedituable = hermanoMasRedituable(hijoIzq, hijoDer);
+
+        while (hijoIzq < heap.size() && masRedituable(i, hijoMasRedituable) != i) {
+            swap(i, hijoMasRedituable);
+            i = hijoMasRedituable;
             hijoIzq = (2*i) + 1;
             hijoDer = (2*i) + 2;
-            hijoMejorRedito = hermanoMasRedituable(hijoIzq, hijoDer);
+            hijoMasRedituable = hermanoMasRedituable(hijoIzq, hijoDer);
         }
     }
 
     public int masRedituable(int i, int j) {
-        Traslado T1 = heap.obtener(i);
-        Traslado T2 = heap.obtener(j);
+        Traslado T1 = heap.get(i);
+        Traslado T2 = heap.get(j);
         int res = i;
         if (T2.gananciaNeta() > T1.gananciaNeta() || (T1.gananciaNeta() == T2.gananciaNeta() && T2.id() < T1.id()))
             res = j;
@@ -87,28 +90,26 @@ public class HeapRedito{
 
     private int hermanoMasRedituable(int i, int j) {          
         int res = 0;
-        if (i < heap.longitud()){           
+        if (i < heap.size()){           
             res = i;
-            if (j < heap.longitud() && masRedituable(i,j) == j) 
+            if (j < heap.size() && masRedituable(i,j) == j) 
                 res = j; 
         }
         return res;
     }
 
     public void swap(int i, int j) {
-        Traslado C1 = sinAliasing(heap.obtener(i));
-        Traslado C2 = sinAliasing(heap.obtener(j));
-        heap.definir(i, C2);
-        C2.changeIndiceRedito(i);
-        heap.definir(j, C1);
-        C1.changeIndiceRedito(i);
+        Traslado T1 = heap.get(i);
+        Traslado T2 = heap.get(j);
+        heap.set(i, T2);
+        T2.changeIndiceRedito(i);  
+        heap.set(j, T1);
+        T1.changeIndiceRedito(j); 
     }
+    
 
-    private Traslado sinAliasing(Traslado traslado) {
-        return new Traslado(traslado.id(), traslado.origen(), traslado.destino(), traslado.gananciaNeta(), traslado.timestamp());
-    }
 
-    public ArregloRedimensionable heap() {
+    public ArrayList<Traslado> heap() {
         return heap;
     }
 }
